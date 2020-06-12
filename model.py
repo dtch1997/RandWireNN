@@ -6,7 +6,7 @@ from randwire import RandWire
 
 
 class Model(nn.Module):
-    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, model_mode, dataset_mode, is_train):
+    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, model_mode, dataset_mode, is_train, graph_seed=None):
         super(Model, self).__init__()
         self.node_num = node_num
         self.p = p
@@ -16,6 +16,7 @@ class Model(nn.Module):
         self.model_mode = model_mode
         self.is_train = is_train
         self.dataset_mode = dataset_mode
+        self.graph_seed = graph_seed
 
         self.num_classes = 1000
         self.dropout_rate = 0.2
@@ -43,10 +44,10 @@ class Model(nn.Module):
             #     RandWire(self.node_num, self.p, self.in_channels, self.out_channels, self.graph_mode, self.is_train, name="CIFAR10_conv2")
             # )
             self.CIFAR_conv3 = nn.Sequential(
-                RandWire(self.node_num, self.p, self.in_channels, self.out_channels * 2, self.graph_mode, self.is_train, name="CIFAR10_conv3")
+                RandWire(self.node_num, self.p, self.in_channels, self.out_channels * 2, self.graph_mode, self.is_train, name="CIFAR10_conv3", graph_seed = graph_seed)
             )
             self.CIFAR_conv4 = nn.Sequential(
-                RandWire(self.node_num, self.p, self.in_channels * 2, self.out_channels * 4, self.graph_mode, self.is_train, name="CIFAR10_conv4")
+                RandWire(self.node_num, self.p, self.in_channels * 2, self.out_channels * 4, self.graph_mode, self.is_train, name="CIFAR10_conv4", graph_seed = graph_seed)
             )
 
             self.CIFAR_classifier = nn.Sequential(
@@ -60,13 +61,13 @@ class Model(nn.Module):
             )
 
             self.CIFAR100_conv2 = nn.Sequential(
-                RandWire(self.node_num, self.p, self.in_channels, self.out_channels * 2, self.graph_mode, self.is_train, name="CIFAR100_conv2")
+                RandWire(self.node_num, self.p, self.in_channels, self.out_channels * 2, self.graph_mode, self.is_train, name="CIFAR100_conv2", graph_seed = graph_seed)
             )
             self.CIFAR100_conv3 = nn.Sequential(
-                RandWire(self.node_num, self.p, self.in_channels * 2, self.out_channels * 4, self.graph_mode, self.is_train, name="CIFAR100_conv3")
+                RandWire(self.node_num, self.p, self.in_channels * 2, self.out_channels * 4, self.graph_mode, self.is_train, name="CIFAR100_conv3", graph_seed = graph_seed)
             )
             self.CIFAR100_conv4 = nn.Sequential(
-                RandWire(self.node_num, self.p, self.in_channels * 4, self.out_channels * 8, self.graph_mode, self.is_train, name="CIFAR100_conv4")
+                RandWire(self.node_num, self.p, self.in_channels * 4, self.out_channels * 8, self.graph_mode, self.is_train, name="CIFAR100_conv4", graph_seed = graph_seed)
             )
 
             self.CIFAR100_classifier = nn.Sequential(

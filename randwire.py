@@ -74,7 +74,7 @@ class Node(nn.Module):
 
 
 class RandWire(nn.Module):
-    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, is_train, name):
+    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, is_train, name, graph_seed):
         super(RandWire, self).__init__()
         self.node_num = node_num
         self.p = p
@@ -83,12 +83,13 @@ class RandWire(nn.Module):
         self.graph_mode = graph_mode
         self.is_train = is_train
         self.name = name
+        self.graph_seed = graph_seed
 
         # get graph nodes and in edges
         graph_node = RandomGraph(self.node_num, self.p, graph_mode=graph_mode)
         if self.is_train is True:
             print("is_train: True")
-            graph = graph_node.make_graph()
+            graph = graph_node.make_graph(graph_seed)
             self.nodes, self.in_edges = graph_node.get_graph_info(graph)
             graph_node.save_random_graph(graph, name)
         else:

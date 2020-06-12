@@ -10,7 +10,7 @@ class RandomGraph(object):
         self.m = m
         self.graph_mode = graph_mode
 
-    def make_graph(self):
+    def make_graph(self, seed=None):
         # reference
         # https://networkx.github.io/documentation/networkx-1.9/reference/generators.html
 
@@ -18,11 +18,11 @@ class RandomGraph(object):
         # In the case of the nx.random_graphs module, we can give the random seeds as a parameter.
         # But I have implemented it to handle it in the module.
         if self.graph_mode is "ER":
-            graph = nx.random_graphs.erdos_renyi_graph(self.node_num, self.p)
+            graph = nx.random_graphs.erdos_renyi_graph(self.node_num, self.p, seed)
         elif self.graph_mode is "WS":
-            graph = nx.random_graphs.connected_watts_strogatz_graph(self.node_num, self.k, self.p)
+            graph = nx.random_graphs.connected_watts_strogatz_graph(self.node_num, self.k, self.p, seed)
         elif self.graph_mode is "BA":
-            graph = nx.random_graphs.barabasi_albert_graph(self.node_num, self.m)
+            graph = nx.random_graphs.barabasi_albert_graph(self.node_num, self.m, seed)
 
         return graph
 
