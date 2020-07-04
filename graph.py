@@ -10,7 +10,7 @@ class RandomGraph(object):
         self.m = m
         self.graph_mode = graph_mode
 
-    def make_graph(self, seed=None):
+    def make_graph(self, seed=1234):
         # reference
         # https://networkx.github.io/documentation/networkx-1.9/reference/generators.html
 

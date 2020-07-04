@@ -6,7 +6,7 @@ from randwire import RandWire
 
 
 class Model(nn.Module):
-    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, model_mode, dataset_mode, is_train, graph_seed=None):
+    def __init__(self, node_num, p, in_channels, out_channels, graph_mode, model_mode, dataset_mode, is_train, graph_seed=1234):
         super(Model, self).__init__()
         self.node_num = node_num
         self.p = p
